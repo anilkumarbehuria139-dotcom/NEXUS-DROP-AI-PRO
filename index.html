@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101b32"><title>NEXUS DROP AI PRO</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="top"><div class="brand"><span class="logo">N</span><div><b>NEXUS DROP AI PRO</b><small>Smart shopping marketplace</small></div></div><nav><a href="#shop">Shop</a><a href="#how">How it works</a><button id="adminOpen" class="outline">Admin</button></nav></header>
+<main>
+<section class="hero"><div><span class="eyebrow">INDIA • SMARTER SHOPPING</span><h1>Useful products.<br><em>Simple shopping.</em></h1><p>Discover practical products for home, lifestyle, pets and everyday technology.</p><a class="primary" href="#shop">Explore products</a></div><div class="hero-card"><div class="orbit">✦</div><div class="hero-product">N</div><p>Curated finds, clear prices</p></div></section>
+<section class="trust"><span>✓ Supplier stock checked before fulfilment</span><span>✓ Order updates</span><span>✓ Secure order records</span></section>
+<section id="shop"><div class="section-head"><div><span class="eyebrow">OUR COLLECTION</span><h2>Shop products</h2></div><input id="search" placeholder="Search products…"></div><div id="products" class="products"><p class="muted">Loading products…</p></div></section>
+<section id="how" class="how"><span class="eyebrow">HOW IT WORKS</span><h2>From your order to delivery</h2><div class="steps"><article><b>01</b><h3>Choose a product</h3><p>Browse available products and their prices.</p></article><article><b>02</b><h3>Place an order</h3><p>Your order is recorded and checked before supplier submission.</p></article><article><b>03</b><h3>Supplier fulfils</h3><p>After supplier acceptance, tracking can be added to your order.</p></article></div></section>
+</main>
+<footer>© <span id="year"></span> NEXUS DROP AI PRO · Operated independently. Supplier availability and delivery terms apply.</footer>
+<div id="orderModal" class="modal hidden"><div class="dialog"><button class="x" data-close="orderModal">×</button><h2>Place your order</h2><div id="orderProduct"></div><form id="orderForm"><input name="customer_name" placeholder="Full name" required maxlength="100"><input name="phone" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" required><input name="email" type="email" placeholder="Email (optional)"><textarea name="address" placeholder="Full delivery address" required maxlength="500"></textarea><input name="pincode" placeholder="6-digit PIN code" pattern="[0-9]{6}" required><select name="payment_method"><option value="COD">Cash on delivery (subject to supplier availability)</option><option value="MANUAL_UPI">Manual UPI / bank transfer (payment checked separately)</option></select><label class="check"><input type="checkbox" required> I agree that my details may be shared with the fulfilment supplier to deliver this order.</label><button class="primary full">Submit order request</button><p class="muted tiny">This submits an order request, not a confirmed payment or shipment. We will confirm availability and fulfilment.</p></form></div></div>
+<div id="adminModal" class="modal hidden"><div class="dialog wide"><button class="x" data-close="adminModal">×</button><h2>Business dashboard</h2><div id="adminLogin"><p class="muted">Sign in with the admin account created in Supabase Authentication.</p><form id="loginForm"><input name="email" type="email" placeholder="Admin email" required><input name="password" type="password" placeholder="Password" required><button class="primary full">Sign in</button></form></div><div id="adminPanel" class="hidden">
+<div class="tabs"><button data-tab="overview" class="active">Overview</button><button data-tab="stock">Stock CSV</button><button data-tab="orders">Orders</button><button data-tab="tracking">Tracking CSV</button></div>
+<div id="tab-overview" class="tab"><div id="stats" class="stats"></div><p class="muted">Only publish products after checking supplier price, stock, shipping, returns and product quality.</p></div>
+<div id="tab-stock" class="tab hidden"><h3>Import supplier stock CSV</h3><p class="muted">Use the template included in <code>templates/stock-template.csv</code>. Map DeoDap's columns to this format first.</p><input type="file" id="stockFile" accept=".csv,text/csv"><button id="importStock" class="primary">Import stock</button><p id="stockMsg" class="muted"></p><a href="templates/stock-template.csv" download>Download stock template</a></div>
+<div id="tab-orders" class="tab hidden"><h3>Supplier order export</h3><p class="muted">Export accepted/paid orders for manual submission in the supplier's approved process.</p><button id="exportOrders" class="primary">Download supplier order CSV</button><div id="ordersTable"></div></div>
+<div id="tab-tracking" class="tab hidden"><h3>Import supplier tracking CSV</h3><p class="muted">Use <code>templates/tracking-template.csv</code>. Match using nexus_order_id.</p><input type="file" id="trackingFile" accept=".csv,text/csv"><button id="importTracking" class="primary">Import tracking</button><p id="trackingMsg" class="muted"></p><a href="templates/tracking-template.csv" download>Download tracking template</a></div>
+<button id="logout" class="outline">Sign out</button>
+</div></div></div>
+<div id="toast" class="toast hidden"></div>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
